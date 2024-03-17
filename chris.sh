@@ -25,7 +25,7 @@ mv wildtype.fna../CHRIS
 #Removing the .gbk file
 rm -r wildtype.gbk.1
 
-#Confirming whether or not the file is a wildtype or mutant
+#Confirming whether the file is a wildtype or mutant
 grep 'tatatata' wildtype.fna
 
 #Printing all the lines that show it is mutant into a new file
