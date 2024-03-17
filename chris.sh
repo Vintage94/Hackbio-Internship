@@ -54,7 +54,6 @@ AR.fasta
 # Creating a nucleotide file titled with my name
 nano chris.fasta
 
-
 # Counting the occurrences of each nucleotide base and storing the counts in variables
 C=$(grep -o "C" AR.fasta | wc -l)
 A=$(grep -o "A" AR.fasta | wc -l)
