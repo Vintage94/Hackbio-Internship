@@ -26,7 +26,7 @@ mv wildtype.fna../CHRIS
 rm -r wildtype.gbk.1
 
 #Confirming whether the file is a wildtype or mutant
-grep 'tatatata' wildtype.fna
+if grep -q "tatatata" wildtype.fna; then echo "mutant"; else echo "wildtype"; fi
 
 #Printing all the lines that show it is mutant into a new file
 grep 'tatatata' wildtype.fna> mutanttype.fna
