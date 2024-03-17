@@ -9,7 +9,7 @@ mkdir biocomputing
 #Moving the biocomputing directory into CHRIS
 mv biocomputing CHRIS
 
-#Change working directory
+#Changing the working directory
 cd CHRIS/biocomputing
 
 #Downloading the three files provided
