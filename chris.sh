@@ -51,11 +51,6 @@ awk '/^>/ {if (seq != "") {print "GC content:", (gc_count / length(seq)) * 100 "
 next} {seq = seq $0; gc_count += gsub(/[GCgc]/,"")} END {print "GC content:", (gc_count / length(seq)) * 100 "%"}' 
 AR.fasta
 
-# Calculating the %GC content of the gene
-awk '/^>/ {if (seq != "") {print "GC content:", (gc_count / length(seq)) * 100 "%"}; printf $0 "\t"; seq=""; gc_count=0; 
-next} {seq = seq $0; gc_count += gsub(/[GCgc]/,"")} END {print "GC content:", (gc_count / length(seq)) * 100 "%"}' 
-AR.fasta
-
 # Creating a nucleotide file titled with my name
 nano chris.fasta
 
