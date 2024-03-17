@@ -69,4 +69,8 @@ echo "T count is:$T" >> chris.fasta
 #Alternatively
 C=$(grep -o "C" AR.fasta | wc -l) && A=$(grep -o "A" AR.fasta | wc -l) && G=$(grep -o "G" AR.fasta | wc -l) && T=$(grep -o "T" AR.fasta | wc -l) && echo "G count is:$G" >> chris.fasta && echo "A count is:$A" >> chris.fasta && echo "C count is:$C" >> chris.fasta && echo "T count is:$T" >> chris.fasta
 
+#Clearing the terminal space
+clear
 
+#Printing all the commands used in this project
+history
