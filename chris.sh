@@ -56,3 +56,20 @@ nano chris.fasta
 
 # Echoing a sequence into the file
 echo "GATCGCAATGA" >> chris.fasta
+
+# Counting the occurrences of each nucleotide base and storing the counts in variables
+C=$(grep -o "C" AR.fasta | wc -l)
+A=$(grep -o "A" AR.fasta | wc -l)
+G=$(grep -o "G" AR.fasta | wc -l)
+T=$(grep -o "T" AR.fasta | wc -l)
+
+# Appending the counts to the nucleotide file
+echo "G count is:$G" >> chris.fasta
+echo "A count is:$A" >> chris.fasta
+echo "C count is:$C" >> chris.fasta
+echo "T count is:$T" >> chris.fasta
+
+#Alternatively
+C=$(grep -o "C" AR.fasta | wc -l) && A=$(grep -o "A" AR.fasta | wc -l) && G=$(grep -o "G" AR.fasta | wc -l) && T=$(grep -o "T" AR.fasta | wc -l) && echo "G count is:$G" >> chris.fasta && echo "A count is:$A" >> chris.fasta && echo "C count is:$C" >> chris.fasta && echo "T count is:$T" >> chris.fasta
+
+
