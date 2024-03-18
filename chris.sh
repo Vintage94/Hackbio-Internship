@@ -37,7 +37,7 @@ echo Androgen receptor
 #Downloading the FASTA format of the gene from NCBI
 wget -O AR.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&id=AH002624.2&rettype=fasta&retmode=text"  
 
-# Counting the number of lines in the FASTA file (excluding the header)
+#Counting the number of lines in the FASTA file (excluding the header)
 grep -v "^>" AR.fasta | wc -l
 
 # Counting the occurrences of each nucleotide base in the FASTA file
@@ -46,21 +46,21 @@ grep -o 'G' AR.fasta | wc -l  # Count occurrences of 'G'
 grep -o 'C' AR.fasta | wc -l  # Count occurrences of 'C'
 grep -o 'T' AR.fasta | wc -l  # Count occurrences of 'T'
 
-# Calculating the %GC content of the gene
+#Calculating the %GC content of the gene
 awk '/^>/ {if (seq != "") {print "GC content:", (gc_count / length(seq)) * 100 "%"}; printf $0 "\t"; seq=""; gc_count=0; 
 next} {seq = seq $0; gc_count += gsub(/[GCgc]/,"")} END {print "GC content:", (gc_count / length(seq)) * 100 "%"}' 
 AR.fasta
 
-# Creating a nucleotide file titled with my name
+#Creating a nucleotide file titled with my name
 nano chris.fasta
 
-# Counting the occurrences of each nucleotide base and storing the counts in variables
+#Counting the occurrences of each nucleotide base and storing the counts in variables
 C=$(grep -o "C" AR.fasta | wc -l)
 A=$(grep -o "A" AR.fasta | wc -l)
 G=$(grep -o "G" AR.fasta | wc -l)
 T=$(grep -o "T" AR.fasta | wc -l)
 
-# Appending the counts to the nucleotide file
+#Appending the counts to the nucleotide file
 echo "G count is:$G" >> chris.fasta
 echo "A count is:$A" >> chris.fasta
 echo "C count is:$C" >> chris.fasta
