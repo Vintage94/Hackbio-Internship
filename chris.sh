@@ -40,7 +40,7 @@ wget -O AR.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=n
 #Counting the number of lines in the FASTA file (excluding the header)
 grep -v "^>" AR.fasta | wc -l
 
-# Counting the occurrences of each nucleotide base in the FASTA file
+#Counting the occurrences of each nucleotide base in the FASTA file
 grep -o 'A' AR.fasta | wc -l  # Count occurrences of 'A'
 grep -o 'G' AR.fasta | wc -l  # Count occurrences of 'G'
 grep -o 'C' AR.fasta | wc -l  # Count occurrences of 'C'
