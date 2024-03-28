@@ -50,11 +50,26 @@ bwa mem Reference.fasta paired1.fastq paired2.fastq > Mapping/aligned.sam
 # Change back to the Project3 directory
 cd..
 
-# 
+# Convert the sam file to a bam file
+samtools view -@ 20 -S -b Mapping/aligned.sam > Mapping/aligned.bam
 
-#
+# Sort bam file based on the order the reads were mapped
+samtools sort -@ 32 -o Mapping/aligned.sorted.bam Mapping/aligned.bam
 
-#
+# Index the sorted bam file
+samtools index Mapping/aligned.sorted.bam
+
 # Variant calling 
+# Index the reference genome using samtools
+samtools faidx Reference.fasta
+
+# Variant calling with freebayes
+freebayes -f Reference.fasta Mapping/aligned.sorted.bam > variants.vcf
+
+# Compress the vcf file
+bgzip variants.vcf
+
+# Decopress the vcf file
+tabix variants.vcf.gz
 
 
