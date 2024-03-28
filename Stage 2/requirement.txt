@@ -6,3 +6,4 @@ Requirements
 5. Trimmomatic
 6. Samtools
 7. freebayes
+8. bcftools
