@@ -39,3 +39,6 @@ brew install samtools
 
 # Install freebayes for variant calling
 brew install freebayes
+
+# Install bcftools
+brew install bcftools
