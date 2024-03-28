@@ -9,6 +9,9 @@ brew install wget
 # Install FastQC for quality control
 brew install FastQC
 
+# Install MultiQC
+pip install multiqc
+
 # Install Trimmomatic for trimming
 wget http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.39.zip
 unzip Trimmomatic-0.39.zip
