@@ -31,6 +31,9 @@ java -jar ~/bin/trimmomatic/trimmomatic-0.39/trimmomatic-0.39.jar PE -phred33 ER
 # Download the reference genome
 wget "https://zenodo.org/records/10886725/files/Reference.fasta?download=1"
 
+# Rename the reference genome
+mv Reference.fasta?download=1 Reference.fasta
+
 # Make a new directory 'Mapping' to output our mapping results
 mkdir Mapping
 
