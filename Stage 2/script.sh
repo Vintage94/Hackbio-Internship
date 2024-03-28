@@ -28,10 +28,10 @@ cd ..
 # Trimming
 java -jar ~/bin/trimmomatic/trimmomatic-0.39/trimmomatic-0.39.jar PE -phred33 ERR8774458_1.fastq.gz ERR8774458_2.fastq.gz paired1.fastq.gz unpaired1.fastq.gz paired2.fastq.gz unpaired2.fastq.gz SLIDINGWINDOW:3:20 MINLEN:50
 
-
 # Mapping
 # Download the reference genome
 wget "https://zenodo.org/records/10886725/files/Reference.fasta?download=1"
+
 
 # Variant calling 
 
