@@ -17,7 +17,7 @@ mkdir QC_Reports
 fastqc ERR8774458_1.fastq.gz ERR8774458_2.fastq.gz -o QC_Reports
 
 #Use MultiQC to summarize the QC results
-.multiqc
+multiqc .
 
 # Trimming
 
