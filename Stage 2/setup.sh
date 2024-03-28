@@ -12,10 +12,24 @@ brew install FastQC
 # Install MultiQC
 pip install multiqc
 
-# Install Trimmomatic for trimming
+# Install Trimmomatic for trimming and filtering
+# Create a directory to store Trimmomatic
+mkdir -p ~/bin/trimmomatic
+
+# Navigate to the directory
+cd ~/bin/trimmomatic
+
+# Download Trimmomatic JAR file
 wget http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.39.zip
+
+# Unzip the downloaded file
 unzip Trimmomatic-0.39.zip
-mv Trimmomatic-0.39/trimmomatic-0.39.jar /usr/local/bin/trimmomatic.jar
+
+# Remove the zip file (optional)
+rm Trimmomatic-0.39.zip
+
+# Return to home directory
+cd
 
 # Install bwa for genome mapping
 brew install bwa
