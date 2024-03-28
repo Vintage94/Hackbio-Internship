@@ -1,0 +1,8 @@
+Requirements
+1. wget
+2. FastQC
+3. MultiQC
+4. bwa
+5. Trimmomatic
+6. Samtools
+7. freebayes
