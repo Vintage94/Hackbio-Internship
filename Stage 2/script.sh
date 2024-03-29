@@ -22,9 +22,6 @@ fastqc ERR8774458_1.fastq.gz ERR8774458_2.fastq.gz -o QC_Reports
 # Use MultiQC to summarize the QC results
 multiqc .
 
-# Move back to the Project3 directory
-cd ..
-
 # Trimming and Filtering
 java -jar ~/bin/trimmomatic/trimmomatic-0.39/trimmomatic-0.39.jar PE -phred33 ERR8774458_1.fastq.gz ERR8774458_2.fastq.gz paired1.fastq.gz unpaired1.fastq.gz paired2.fastq.gz unpaired2.fastq.gz SLIDINGWINDOW:3:20 MINLEN:50
 
@@ -46,9 +43,6 @@ bwa index Reference.fasta
 
 # Map the preprocessed sequences to the reference genome
 bwa mem Reference.fasta paired1.fastq paired2.fastq > Mapping/aligned.sam
-
-# Change back to the Project3 directory
-cd..
 
 # Convert the sam file to a bam file
 samtools view -@ 20 -S -b Mapping/aligned.sam > Mapping/aligned.bam
