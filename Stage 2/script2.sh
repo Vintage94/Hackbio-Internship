@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # Error handling: Exit script if any command fails or encounters unset variables
 set -eu
 
