@@ -23,7 +23,7 @@ fastqc ERR8774458_1.fastq.gz ERR8774458_2.fastq.gz -o QC_Reports
 multiqc .
 
 # Trimming and Filtering
-java -jar ~/bin/trimmomatic/trimmomatic-0.39/trimmomatic-0.39.jar PE -phred33 ERR8774458_1.fastq.gz ERR8774458_2.fastq.gz paired1.fastq.gz unpaired1.fastq.gz paired2.fastq.gz unpaired2.fastq.gz SLIDINGWINDOW:3:20 MINLEN:50
+java -jar ~/bin/trimmomatic/trimmomatic-0.39/trimmomatic-0.39.jar PE -phred33 ERR8774458_1.fastq.gz ERR8774458_2.fastq.gz paired1.fastq.gz unpaired1.fastq.gz paired2.fastq.gz unpaired2.fastq.gz TRAILING:20 MINLEN:50
 
 # Decompress the files
 gunzip paired1.fastq.gz
