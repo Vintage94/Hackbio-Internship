@@ -64,7 +64,6 @@ for url in "${sample_urls[@]}"; do
     TRAILING:20 MINLEN:50
   echo "Trimmed reads for $name."
 
-
   # Mapping
   bwa mem "$reference_name" "$name"_R1_trimmed.fastq.gz "$name"_R2_trimmed.fastq.gz > "$name"/Mapping/"$name".sam
   samtools view -@ 20 -S -b "$name"/Mapping/"$name".sam > "$name"/Mapping/"$name".bam
