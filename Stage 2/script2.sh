@@ -58,11 +58,12 @@ for url in "${sample_urls[@]}"; do
   echo "Summarized QC results for $name."
   
   # Trim using Trimomatic
-  java -jar trimmomatic-0.39.jar PE -threads 8 "$name"_R1.fastq.gz "$name"_R2.fastq.gz \
+  java -jar ~/bin/trimmomatic/trimmomatic-0.39/trimmomatic-0.39.jar PE -@ 8 "$name"_R1.fastq.gz "$name"_R2.fastq.gz \
     "$name"_R1_trimmed.fastq.gz "$name"_R1_unpaired.fastq.gz \
     "$name"_R2_trimmed.fastq.gz "$name"_R2_unpaired.fastq.gz \
-    ILLUMINACLIP:TruSeq3-PE.fa:2:30:10:2:keepBothReads LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+    TRAILING:20 MINLEN:50
   echo "Trimmed reads for $name."
+
 
   # Mapping
   bwa mem "$reference_name" "$name"_R1_trimmed.fastq.gz "$name"_R2_trimmed.fastq.gz > "$name"/Mapping/"$name".sam
