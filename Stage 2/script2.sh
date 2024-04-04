@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # Error handling: Exit script if any command fails or encounters unset variables
-set -eu
+set -eux
 
 # Define the URL for the reference genome and the desired filename
-reference_url="https://raw.githubusercontent.com/josoga2/yt-dataset/main/dataset/raw_reads/reference.fasta "
+reference_url="https://raw.githubusercontent.com/josoga2/yt-dataset/main/dataset/raw_reads/reference.fasta"
 reference_name="reference.fasta"
 
 # Download the reference genome if it's not already present
@@ -36,12 +36,13 @@ fi
 
 # Loop through each sample URL
 for url in "${sample_urls[@]}"; do
-  # Extract the sample name from the URL
+  # Extract the sample name from the URL using cut
   name=$(basename "$url" | cut -d '_' -f 1)
   echo "Processing sample: $name"
   
   # Download the dataset
-  wget -O "$name.fastq.gz" "$url"
+  wget -O "${name}_R1.fastq.gz" "$url"
+  wget -O "${name}_R2.fastq.gz" "$(dirname "$url")/${name}_R2.fastq.gz"
   echo "Downloaded dataset for $name."
 
   # Create directories for quality control and mapping
@@ -49,8 +50,8 @@ for url in "${sample_urls[@]}"; do
   mkdir -p "$name"/Mapping
   echo "Created directories for quality control and mapping for $name."
   
-  # Quality control
-  fastqc "$name.fastq.gz" -o "$name"/QC_Reports
+  # Quality control for both R1 and R2 reads
+  fastqc "${name}_R1.fastq.gz" "${name}_R2.fastq.gz" -o "$name"/QC_Reports
   echo "Performed quality control for $name."
 
   # Summarize QC results
@@ -60,14 +61,14 @@ for url in "${sample_urls[@]}"; do
   # Trim using Trimomatic
   java -jar ~/bin/trimmomatic/trimmomatic-0.39/trimmomatic-0.39.jar \
   PE -phred33 \
-  "$name"_R1.fastq.gz "$name"_R2.fastq.gz \
-    "$name"_R1_trimmed.fastq.gz "$name"_R1_unpaired.fastq.gz \
-    "$name"_R2_trimmed.fastq.gz "$name"_R2_unpaired.fastq.gz \
-    TRAILING:20 MINLEN:50
+  "${name}_R1.fastq.gz" "${name}_R2.fastq.gz" \
+  "${name}_R1_trimmed.fastq.gz" "${name}_R1_unpaired.fastq.gz" \
+  "${name}_R2_trimmed.fastq.gz" "${name}_R2_unpaired.fastq.gz" \
+  TRAILING:20 MINLEN:50
   echo "Trimmed reads for $name."
 
   # Mapping
-  bwa mem "$reference_name" "$name"_R1_trimmed.fastq.gz "$name"_R2_trimmed.fastq.gz > "$name"/Mapping/"$name".sam
+  bwa mem "$reference_name" "${name}_R1_trimmed.fastq.gz" "${name}_R2_trimmed.fastq.gz" > "$name"/Mapping/"$name".sam
   samtools view -@ 20 -S -b "$name"/Mapping/"$name".sam > "$name"/Mapping/"$name".bam
   samtools sort -@ 32 -o "$name"/Mapping/"$name".sorted.bam "$name"/Mapping/"$name".bam
   samtools index "$name"/Mapping/"$name".sorted.bam
@@ -101,7 +102,7 @@ done
 
 # Merge CSV files for all samples
 echo "Merging CSV files..."
-cat *.csv > merged.csv
+cat */*.csv > merged.csv
 echo "Merged CSV files for all samples."
 
 echo "Analysis completed successfully!"
