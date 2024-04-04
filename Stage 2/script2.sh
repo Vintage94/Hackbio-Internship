@@ -58,7 +58,7 @@ for url in "${sample_urls[@]}"; do
   echo "Summarized QC results for $name."
   
   # Trim using Trimomatic
-  java -jar ~/bin/trimmomatic/trimmomatic-0.39/trimmomatic-0.39.jar PE "$name"_R1.fastq.gz "$name"_R2.fastq.gz \
+  java -jar ~/bin/trimmomatic/trimmomatic-0.39/trimmomatic-0.39.jar PE -phred33 "$name"_R1.fastq.gz "$name"_R2.fastq.gz \
     "$name"_R1_trimmed.fastq.gz "$name"_R1_unpaired.fastq.gz \
     "$name"_R2_trimmed.fastq.gz "$name"_R2_unpaired.fastq.gz \
     TRAILING:20 MINLEN:50
