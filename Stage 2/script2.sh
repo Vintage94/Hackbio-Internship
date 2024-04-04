@@ -4,8 +4,8 @@
 set -eu
 
 # Define the URL for the reference genome and the desired filename
-reference_url="https://example.com/reference_genome.fasta"
-reference_name="reference_genome.fasta"
+reference_url="https://raw.githubusercontent.com/josoga2/yt-dataset/main/dataset/raw_reads/reference.fasta "
+reference_name="reference.fasta"
 
 # Download the reference genome if it's not already present
 if [ ! -f "$reference_name" ]; then
