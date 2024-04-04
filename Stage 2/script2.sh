@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# Error handling: Exit script if any command fails or encounters unset variables
-set -eux
-
 # Define the URL for the reference genome and the desired filename
 reference_url="https://raw.githubusercontent.com/josoga2/yt-dataset/main/dataset/raw_reads/reference.fasta"
 reference_name="reference.fasta"
